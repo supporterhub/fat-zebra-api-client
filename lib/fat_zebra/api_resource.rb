@@ -8,8 +8,8 @@ module FatZebra
 
     class << self
 
-      def base_path
-        "#{configurations.api_version}/"
+      def base_path(account)
+        "#{account.api_version}/"
       end
 
       ##
@@ -24,18 +24,21 @@ module FatZebra
       # @raise [FatZebra::RequestError] if the request is invalid
       # rubocop:disable Metrics/AbcSize
       def request(method, path, payload = {}, options = {})
-        payload[:test] = true if configurations.test_mode
+        account = get_account options
+        full_path = "/#{base_path account}#{path}"
+
+        payload[:test] = true if account.test_mode
         payload        = Util.format_dates_in_hash(payload)
-        url_params     = Util.encode_parameters(payload) if method == :get
-        uri            = build_endpoint_url(configurations.gateway, path, url_params, http_secure: configurations.http_secure)
+        url_params     = URI.encode_www_form(payload) if method == :get
+        uri            = build_endpoint_url(account.gateway, full_path, url_params, http_secure: account.http_secure)
 
         request_options = Util.compact(
           method:  method,
           url:     uri.to_s,
           payload: payload,
-          proxy:   configurations.proxy,
-          use_ssl: configurations.http_secure
-        ).merge(authentication).merge(default_headers).merge(configurations.global_options).merge(options)
+          proxy:   account.proxy,
+          use_ssl: account.http_secure
+        ).merge(authentication account).merge(default_headers).merge(account.global_options).merge(options)
 
         Request.execute(request_options).body
       rescue FatZebra::RequestError => error
@@ -47,18 +50,18 @@ module FatZebra
       private
 
       def ssl_options
-        return {} unless configurations.http_secure
+        return {} unless get_account.http_secure
         {
           ca_file:     File.expand_path(File.dirname(__FILE__) + '/../../vendor/cacert.pem'),
           verify_mode: OpenSSL::SSL::VERIFY_PEER
         }
       end
 
-      def authentication
+      def authentication(account)
         {
           basic_auth: {
-            user:     configurations.username,
-            password: configurations.token
+            user:     account.username,
+            password: account.token
           }
         }
       end
@@ -67,6 +70,23 @@ module FatZebra
         FatZebra.configurations
       end
 
+      def get_account(options)
+        case [options[:account].nil?, configurations.nil?]
+        when [true, false]
+          configurations
+        when [false, true]
+          options[:account]
+        when [true, true]
+          raise ConfigurationError, "No account specified"
+        else # [false, false]
+          if options[:account] == configurations
+            # WARN: specifying account in two places
+            configurations
+          else
+            raise ConfigurationError, "Ambiguous accounts specified"
+          end
+        end
+      end
     end
   end
 end

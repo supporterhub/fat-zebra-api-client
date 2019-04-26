@@ -14,6 +14,7 @@ module FatZebra
       #
       # @return [Hash]
       def compact(hash)
+        # Can use Hash#compact when Ruby 2.3 compatability is dropped
         hash.reject { |_, value| value.nil? }
       end
 
@@ -26,23 +27,6 @@ module FatZebra
       #   camelize('my_model') => 'MyModel'
       def camelize(string)
         string.split('_').map(&:capitalize).join
-      end
-
-      ##
-      # Encodes a hash of parameters in a way that's suitable for use as query
-      # parameters in a URI or as form parameters in a request body. This mainly
-      # involves escaping special characters from parameter keys and values (e.g.
-      # `&`).
-      def encode_parameters(params = {})
-        params.map { |k, v| "#{url_encode(k)}=#{url_encode(v)}" }.join('&')
-      end
-
-      ##
-      # Encodes a string in a way that makes it suitable for use in a set of
-      # query parameters in a URI or in a set of form parameters in a request
-      # body.
-      def url_encode(key)
-        CGI.escape(key.to_s).gsub('%5B', '[').gsub('%5D', ']')
       end
 
       ##
@@ -74,8 +58,10 @@ module FatZebra
       #
       # @return [Hash] date formated params
       def format_dates_in_hash(hash)
+
+        # Can use Hash#transform_values! when Ruby 2.3 compatablility is dropped
         hash.each do |(key, value)|
-          hash[key] = value.strftime(DATE_FORMAT) if value.is_a?(DateTime) || value.is_a?(Time) || value.is_a?(Date)
+          hash[key] = value.strftime DATE_FORMAT if value.respond_to? :strftime
         end
 
         hash

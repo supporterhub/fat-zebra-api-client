@@ -7,14 +7,10 @@ module FatZebra
 
     module ClassMethods
 
-      def base_path
-        ''
-      end
-
       ##
       # @return [String] resource path
       def resource_path(path = nil)
-        "/#{base_path}#{path || @resource_name || CGI.escape(resource_name)}"
+        "#{path || @resource_name || CGI.escape(resource_name)}"
       end
 
       ##
@@ -26,13 +22,13 @@ module FatZebra
       ##
       # @return [String] the class name
       def class_name
-        name.split('::')[-1]
+        name.split('::').last
       end
 
       ##
       # Send a request to the API
       def request
-        raise 'need to be implemented'
+        raise NotImplementedError
       end
 
       def build_endpoint_url(base_url, path, params = nil, options = {})

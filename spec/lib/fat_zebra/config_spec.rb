@@ -8,7 +8,7 @@ describe FatZebra::Config do
 
   subject(:config) { FatZebra::Config.new(params) }
 
-  describe  '#initialize' do
+  describe '#initialize' do
     it { expect(config.valid!).to be_truthy }
     it { expect(config.token).to eq(params[:token]) }
     it { expect(config.username).to eq(params[:username]) }

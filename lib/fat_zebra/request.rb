@@ -15,16 +15,17 @@ module FatZebra
       def execute(params = {})
         klass = new(params)
 
-        if params[:method] == :post
+        case params[:method]
+        when :post
           klass.post
-        elsif params[:method] == :put
+        when :put
           klass.put
-        elsif params[:method] == :delete
+        when :delete
           klass.delete
-        elsif params[:method] == :get
+        when :get
           klass.get
         else
-          raise FatZebra::UnknownRequestMethod, "#{params[:method]} haven't been implemented"
+          raise FatZebra::UnknownRequestMethod, "#{params[:method]} hasn't been implemented"
         end
       end
 
@@ -167,11 +168,7 @@ module FatZebra
     end
 
     def proxy_host
-      if !uri_proxy.host.nil?
-        uri_proxy.host
-      else
-        :ENV
-      end
+      uri_proxy.host || :ENV
     end
   end
 end
