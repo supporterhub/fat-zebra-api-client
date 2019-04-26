@@ -9,6 +9,10 @@ module FatZebra
   class Information < APIResource
     class << self
 
+      def base_path(_account)
+        ''
+      end
+
       ##
       # Ping the API
       #
@@ -16,7 +20,7 @@ module FatZebra
       #
       # @return [FatZebra::Information] response
       def ping(nonce = SecureRandom.hex)
-        response = request(:get, '/ping', echo: nonce)
+        response = request(:get, 'ping', echo: nonce)
         initialize_from(response)
       end
 

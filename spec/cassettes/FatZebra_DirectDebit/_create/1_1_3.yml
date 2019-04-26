@@ -5,7 +5,7 @@ http_interactions:
     uri: https://gateway.sandbox.fatzebra.com.au/v1.0/direct_debits
     body:
       encoding: UTF-8
-      string: '{"description":"Confirmation","amount":42,"bsb":"123-123","account_name":"Test","account_number":"012345678","test":true}'
+      string: '{"description":"Confirmation","amount":42.0,"bsb":"123-123","account_name":"Test","account_number":"012345678","test":true}'
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -53,6 +53,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"successful":true,"response":{"id":"071-DD-8QLVUSUR","amount":42.0,"bsb":"123-123","account_number":"012345678","account_name":"Test","description":"Confirmation","reference":"071-DD-8QLVUSUR","date":"2018-05-09","process_date":null,"status":"New","result":null,"metadata":null},"errors":[],"test":true}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 08 May 2018 11:06:50 GMT
 recorded_with: VCR 3.0.3
