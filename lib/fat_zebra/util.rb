@@ -58,7 +58,6 @@ module FatZebra
       #
       # @return [Hash] date formated params
       def format_dates_in_hash(hash)
-
         # Can use Hash#transform_values! when Ruby 2.3 compatablility is dropped
         hash.each do |(key, value)|
           hash[key] = value.strftime DATE_FORMAT if value.respond_to? :strftime

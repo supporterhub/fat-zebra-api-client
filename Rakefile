@@ -7,5 +7,5 @@ RSpec::Core::RakeTask.new('spec')
 # If you want to make this the default task
 task default: :spec
 
-desc "Run the unit tests (alias of `spec`)"
-task :test => :spec
+desc 'Run the unit tests (alias of `spec`)'
+task test: :spec

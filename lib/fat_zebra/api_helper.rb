@@ -10,7 +10,7 @@ module FatZebra
       ##
       # @return [String] resource path
       def resource_path(path = nil)
-        "#{path || @resource_name || CGI.escape(resource_name)}"
+        (path || @resource_name || CGI.escape(resource_name)).to_s
       end
 
       ##

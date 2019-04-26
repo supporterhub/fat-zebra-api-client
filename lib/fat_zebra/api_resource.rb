@@ -38,7 +38,7 @@ module FatZebra
           payload: payload,
           proxy:   account.proxy,
           use_ssl: account.http_secure
-        ).merge(authentication account).merge(default_headers).merge(account.global_options).merge(options)
+        ).merge(authentication(account)).merge(default_headers).merge(account.global_options).merge(options)
 
         Request.execute(request_options).body
       rescue FatZebra::RequestError => error
@@ -77,14 +77,10 @@ module FatZebra
         when [false, true]
           options[:account]
         when [true, true]
-          raise ConfigurationError, "No account specified"
+          raise ConfigurationError, 'No account specified'
         else # [false, false]
-          if options[:account] == configurations
-            # WARN: specifying account in two places
-            configurations
-          else
-            raise ConfigurationError, "Ambiguous accounts specified"
-          end
+          raise ConfigurationError, 'Ambiguous accounts specified' if options[:account] != configurations
+          configurations
         end
       end
     end

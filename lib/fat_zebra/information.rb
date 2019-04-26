@@ -9,8 +9,8 @@ module FatZebra
   class Information < APIResource
     class << self
 
-      def base_path(account)
-        ""
+      def base_path(_account)
+        ''
       end
 
       ##
