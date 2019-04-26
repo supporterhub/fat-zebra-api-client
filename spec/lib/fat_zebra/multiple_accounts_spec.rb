@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe "Multiple accounts", :vcr, :no_default_account do
+describe 'Multiple accounts', :vcr, :no_default_account do
 
-  describe "The basics" do
+  describe 'The basics' do
     it { expect(FatZebra.configurations).to be_nil }
 
     let(:purchase_0) { FatZebra::Purchase.create valid_purchase_payload }
 
-    it { expect { purchase_0 }.to raise_error(FatZebra::ConfigurationError) }
+    it { expect { purchase_0 }.to raise_error(FatZebra::ConfigurationError, 'No account specified') }
 
     let(:account_1) {
       FatZebra::Config.new(
@@ -44,7 +44,7 @@ describe "Multiple accounts", :vcr, :no_default_account do
     }
   end
 
-  describe "Conflicting accounts" do
+  describe 'Conflicting accounts' do
     it {
       expect(FatZebra.configurations).to be_nil
 

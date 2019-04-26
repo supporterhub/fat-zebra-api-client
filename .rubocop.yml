@@ -11,6 +11,8 @@ Style/MethodMissingSuper:
   Enabled: false
 Style/NumericPredicate:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
 
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
@@ -34,7 +36,7 @@ Documentation:
   Enabled: false
 
 AllCops:
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
   Exclude:
     - bin/**/*
     - vendor/**/*
