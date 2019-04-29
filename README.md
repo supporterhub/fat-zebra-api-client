@@ -3,9 +3,13 @@ Ruby API Library for Fat Zebra
 
 [![Build Status](https://travis-ci.org/supporterhub/fat-zebra-api-client.svg?branch=master)](https://travis-ci.org/supporterhub/fat-zebra-api-client)
 
-Release 3.1.0  for API version 1.0
-
 A Ruby client for the [Fat Zebra](https://www.fatzebra.com.au) Online Payment Gateway (for Australian Merchants)
+
+This is an unofficial fork of the Fat Zebra API client. This version has been patched to allow multiple accounts to be used simultaneously.
+
+Version 3.1.0.1 of this gem aims to be a drop-in replacement for version 3.1.0 of the official gem.
+
+It aims to maintain parity with the [official Fat Zebra API client](https://github.com/fatzebra/Ruby-Library).
 
 Dependencies
 ------------
@@ -16,17 +20,18 @@ Dependencies
 Installing
 ----------
 
-    gem install fat_zebra
+    gem install fat_zebra_multi
 
 Or in a Rails App (or similar, with Bundler), in your Gemfile:
 
-    gem "fat_zebra"
+    gem "fat_zebra_multi"
 
 Usage
 -----
 
+With one account:
 ```ruby
-require 'fat_zebra'
+require 'fat_zebra_multi'
 
 # Configuration only needs to be done once, usually in your rails initializers
 FatZebra.configure do |config|
@@ -50,6 +55,40 @@ else
   abort "Error in transaction: #{purchase.errors}"
 end
 ```
+
+With multiple accounts:
+```ruby
+require 'fat_zebra_multi'
+
+account_1 = FatZebra::Config.new(
+  username:  'USERNAME_1',
+  token:     'API_TOKEN_1',
+)
+
+account_2 = FatZebra::Config.new(
+  username:  'USERNAME_2',
+  token:     'API_TOKEN_2',
+)
+
+purchase = FatZebra::Purchase.create({
+  amount:      10000,
+  card_holder: 'Bill Simpson',
+  card_number: '5123456789012346',
+  card_expiry: '05/2023',
+  cvv:         '123',
+  reference:   'ORDER-23',
+  customer_ip: '203.99.87.4'
+}, {
+  account: account_1
+})
+
+if purchase.successful?
+  puts "Transaction ID: #{purchase.id}"
+else
+  abort "Error in transaction: #{purchase.errors}"
+end
+```
+
 
 Documentation
 -------------

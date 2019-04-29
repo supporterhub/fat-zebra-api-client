@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'fat_zebra/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'fat_zebra'
+  s.name        = 'fat_zebra_multi'
   s.version     = FatZebra::VERSION
   s.authors     = ['Matthew Savage']
   s.email       = ['matt@amasses.net']
   s.homepage    = ''
-  s.summary     = 'Fat Zebra payments gem - integrate your ruby app with Fat Zebra'
+  s.summary     = 'Unofficial fork of the Fat Zebra API client - integrate your Ruby app with Fat Zebra'
   s.description = 'Provides integration with the Fat Zebra internet payment gateway (www.fatzebra.com.au), including purchase, refund, auth, capture and recurring billing functionality.'
 
   s.files         = `git ls-files`.split("\n")
