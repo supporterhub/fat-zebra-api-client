@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ['matt@amasses.net', 'aidan.samuel@supporterhub.com']
   s.homepage    = ''
   s.summary     = 'Unofficial fork of the Fat Zebra API client - integrate your Ruby app with Fat Zebra'
-  s.description = 'Unofficial fork. Provides integration with the Fat Zebra internet payment gateway (www.fatzebra.com.au), including purchase, refund, auth, capture and recurring billing functionality.'
+  s.description = 'Unofficial fork. Integrate with the Fat Zebra internet payment gateway (www.fatzebra.com.au), including purchase, refund, auth, capture and recurring billing functionality.'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {spec}/*`.split("\n")
