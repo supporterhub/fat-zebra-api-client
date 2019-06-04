@@ -7,7 +7,7 @@ A Ruby client for the [Fat Zebra](https://www.fatzebra.com.au) Online Payment Ga
 
 This is an unofficial fork of the Fat Zebra API client. This version has been patched to allow multiple accounts to be used simultaneously.
 
-Version 3.1.0.1 of this gem aims to be a drop-in replacement for version 3.1.0 of the official gem.
+Version 3.1.0.x of this gem aims to be a drop-in replacement for version 3.1.0 of the official gem.
 
 It aims to maintain parity with the [official Fat Zebra API client](https://github.com/fatzebra/Ruby-Library).
 
