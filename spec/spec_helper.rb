@@ -15,6 +15,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.allow_http_connections_when_no_cassette = false
+  # config.debug_logger = $stdout
 
   config.register_request_matcher :uri_ignoring_trailing_id do |*requests|
     requests.map(&:uri).map { |uri|
@@ -26,9 +27,10 @@ VCR.configure do |config|
 
   config.register_request_matcher :fuzzy_body do |*requests|
     requests.map(&:body).map { |body|
-      body.gsub /\b\h{32}(-\d)?\b/, 'REFERENCE-NUMBER'
+      body.gsub /\b\h{20}\h{12}?(-\d)?\b/, 'REFERENCE-NUMBER'
     }.map { |body|
-      body.gsub /\b(19|20)\d\d(-?)(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])\b/, '9999\299\299'
+      body.gsub /\b(19|20)\d\d(-?)(0[1-9]|1[012])\2((0[1-9]|[12]\d|3[01])([012]\d([0-5]\d){1,2})?)?\b/, '9999\299\299'
+      #                  yyyyyyyyyy     mmmmmmmmmmmmm    dddddddddddddddddddd  hhhhhhh msmsmsmsmsmsm
     }.reduce &:==
   end
 
