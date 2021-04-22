@@ -1,3 +1,3 @@
 module FatZebra
-  VERSION = '3.2.0.1'.freeze
+  VERSION = '3.2.3.1'.freeze
 end

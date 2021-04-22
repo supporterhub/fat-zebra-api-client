@@ -3,12 +3,12 @@ Ruby API Library for Fat Zebra
 
 [![Build Status](https://travis-ci.org/supporterhub/fat-zebra-api-client.svg?branch=master)](https://travis-ci.org/supporterhub/fat-zebra-api-client)
 
-Release 3.1.0  for API version 1.0
-A Ruby client for the [Fat Zebra](https://www.fatzebra.com.au) Online Payment Gateway (for Australian Merchants)
+Release 3.2.0 for API version 1.0
+A Ruby client for the [Fat Zebra](https://www.fatzebra.com) Online Payment Gateway
 
 This is an unofficial fork of the Fat Zebra API client. This version has been patched to allow multiple accounts to be used simultaneously.
 
-Version 3.1.0.x of this gem aims to be a drop-in replacement for version 3.1.0 of the official gem.
+Version 3.2.3.x of this gem aims to be a drop-in replacement for version 3.2.3 of the official gem.
 
 It aims to maintain parity with the [official Fat Zebra API client](https://github.com/fatzebra/Ruby-Library).
 
@@ -94,11 +94,11 @@ end
 Documentation
 -------------
 
-Full API reference can be found at http://docs.fatzebra.com.au
+Full API reference can be found at http://docs.fatzebra.com
 
 Support
 -------
-If you have any issue with the Fat Zebra Ruby Client please contact us at support@fatzebra.com.au and we will be more then happy to help out. Alternatively you may raise an issue in github.
+If you have any issue with the Fat Zebra Ruby Client please contact us at support@fatzebra.com and we will be more then happy to help out. Alternatively you may raise an issue in github.
 
 Pull Requests
 -------------

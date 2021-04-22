@@ -6,8 +6,8 @@ require 'fat_zebra/version'
 Gem::Specification.new do |s|
   s.name        = 'fat_zebra_multi'
   s.version     = FatZebra::VERSION
-  s.authors     = ['Matthew Savage', 'Aidan Samuel']
-  s.email       = ['matt@amasses.net', 'aidan.samuel@supporterhub.com']
+  s.authors     = ['Fat Zebra', 'Aidan Samuel']
+  s.email       = ['support@fatzebra.com', 'aidan.samuel@supporterhub.com']
   s.homepage    = ''
   s.summary     = 'Unofficial fork of the Fat Zebra API client - integrate your Ruby app with Fat Zebra'
   s.description = 'Unofficial fork. Integrate with the Fat Zebra internet payment gateway (www.fatzebra.com.au), including purchase, refund, auth, capture and recurring billing functionality.'
@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {spec}/*`.split("\n")
   s.require_paths = %w[lib]
 
+  s.add_development_dependency 'byebug'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 3.6'

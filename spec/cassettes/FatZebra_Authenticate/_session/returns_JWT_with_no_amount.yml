@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://gateway.sandbox.fatzebra.com.au/v1.0/authenticate/session
+    body:
+      encoding: UTF-8
+      string: '{"currency":"AUD","test":true}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic VEVTVDpURVNU
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Request-Version:
+      - 1.21.8
+      X-Request-Id:
+      - f8699db95ab7438ea25dc80ee560467a
+      X-Runtime:
+      - '0.032563'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"successful":true,"response":{"jwt":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzYyMTI3NzYsImlhdCI6MTU3NjE5ODM3NiwiaXNzIjoiNWRjM2VhMzVhZmE4MGQyZWEwZWUxMGU3IiwianRpIjoiZWIyYWFiZjQtY2E3Yy00NTk3LTk5NjQtMGVmOTAxNDQzMjUwIiwiT3JnVW5pdElkIjoiNWRiMTVhMzQwMDViOTMwZmM0MGM4OWVlIiwiT2JqZWN0aWZ5UGF5bG9hZCI6dHJ1ZSwiUGF5bG9hZCI6eyJPcmRlckRldGFpbHMiOnsiQ3VycmVuY3lDb2RlIjoiMDM2In19fQ.ZfDGDc_NQWQLhCdaCwz-lg94KTuH-B1HrcT95SeGNys"},"errors":[],"test":true}'
+    http_version: 
+  recorded_at: Fri, 13 Dec 2019 00:52:56 GMT
+recorded_with: VCR 3.0.3
